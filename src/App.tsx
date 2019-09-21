@@ -1,26 +1,20 @@
 import React from 'react'
 
-import logo from './logo.svg'
-import './App.sass'
+import './App.module.sass'
 
 const App: React.FC = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <h1 className='title'>Dice Roller</h1>
       </header>
-    </div>
+      <main>
+        <p>Dice roller&hellip;</p>
+      </main>
+      <footer>
+        <p>Copyright.</p>
+      </footer>
+    </>
   )
 }
 
