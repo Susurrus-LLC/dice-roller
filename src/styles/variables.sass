@@ -5,22 +5,22 @@ $font: 'Karla', 'Open Sans', 'Droid Sans', 'Ubuntu', 'Helvetica Neue', Helvetica
 /*
  * Modular Scale
  * https://alistapart.com/article/more-meaningful-typography
- * 1.00rem @ 1:1.5
- * 1.25rem @ 1:1.5
- * https://www.modularscale.com/?1,1.25&em&1.5
+ * 1.000rem @ 1:1.333
+ * 1.166rem @ 1:1.333
+ * https://www.modularscale.com/?1,1.166&em&1.333
  */
 
 // All sizes are given as pure numbers, so must be given the unit 'rem'
-$ratio: 3.0 / 2.0
+$ratio: 4.0 / 3.0
 $base1: 1.00rem
-$base2: 1.25rem
+$base2: (7.0 / 6.0) * 1rem
 $lnht: $base2
 
 $modularscale: ("base": $base1 $base2, "ratio": $ratio)
 
 // Colors
 $dark: #0B2644
-$blue: #13355B
+$main: #13355B
 $medium: #134074
 $light: #8DA7C4
 $white: #F9FBFC
