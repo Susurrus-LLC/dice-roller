@@ -4,11 +4,131 @@
 
 @import './styles/variables'
 
-body
-  margin: 0
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+*, *:before, *:after
+  box-sizing: border-box
+
+*:focus
+  outline: 1px solid transparentize($dark, 0.7)
+
+html
+  font-family: $font
+  font-weight: normal
+  font-size: 100%
+  line-height: $lnht
+  word-wrap: normal
+  font-feature-settings: "kern", "liga", "clig", "calt"
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
+html, body, #root
+  height: 100%
+  max-width: 100vw
+  margin: 0
+  padding: 0
+
+#root
+  width: 92%
+  max-width: ms(31)
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  flex-direction: column
+  display: grid
+  grid-template-rows: auto 1fr auto
+
 code
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+h1, h2, h3, h4, h5, h6, p
+  padding: 0
+  margin: 0
+  font-weight: inherit
+
+h1, h2, h3, h4, h5, h6
+  font-weight: bolder
+  text-rendering: optimizeLegibility
+  margin-top: ms(5)
+  margin-bottom: (3 * $lnht) - ms(5)
+  color: $main
+
+h6, p, label, button, input, textarea, select, optgroup
+  font-size: ms(0)
+
+h6
+  line-height: (2 * $lnht) / ms(1)
+
+h5
+  font-size: ms(1)
+  line-height: (2 * $lnht) / ms(1)
+
+h4
+  font-size: ms(2)
+  line-height: (2 * $lnht) / ms(2)
+
+h3
+  font-size: ms(3)
+  line-height: (2 * $lnht) / ms(3)
+
+h2
+  font-size: ms(4)
+  line-height: (2 * $lnht) / ms(4)
+
+h1
+  font-size: ms(5)
+  line-height: (2 * $lnht) / ms(5)
+
+p, label, button, input, textarea, select, optgroup
+  line-height: $lnht
+
+p, label
+  margin: $lnht 0
+
+  *:last-child
+    margin-bottom: 0
+
+a
+  background-color: transparent
+  outline-offset: ms(-10)
+
+  &:link, &:visited, &:hover, &:active
+    text-decoration: underline
+
+  &:link, &:visited
+    color: $main
+
+  &:hover
+    color: $medium
+
+  &:active
+    color: $dark
+
+button, input, textarea, select, optgroup
+  font: inherit
+
+button
+  cursor: pointer
+  color: white
+  background: none
+  background-color: $main
+  border: 1px solid transparentize($dark, 0.75)
+  margin: 0
+  padding: ms(-2) ms(0)
+  box-shadow: 0 ms(-6) ms(-5) 0 rgba(0, 0, 0, 0.2), 0 ms(-4) ms(1) 0 rgba(0, 0, 0, 0.19)
+
+  &:hover
+    background-color: darken($main, 3)
+
+  &:active
+    background-color: $dark
+
+::-webkit-scrollbar
+  width: ms(-1)
+
+::-webkit-scrollbar-track
+  background-color: transparent
+
+::-webkit-scrollbar-thumb
+  background-color: transparentize($main, 0.2)
+
+  &:hover
+    background-color: transparentize($dark, 0.2)
