@@ -1,15 +1,20 @@
 import React from 'react'
 
+import Analysis from './components/Analysis'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import Input from './components/Input'
+import Results from './components/Results'
 
-import './App.module.sass'
+import styles from './App.module.sass'
 
 const App: React.FC = () => (
   <>
     <Header />
-    <main>
-      <p>Dice roller&hellip;</p>
+    <main className={styles.main}>
+      <Input />
+      <Results />
+      <Analysis />
     </main>
     <Footer />
   </>
