@@ -8,9 +8,10 @@ The format of this changelog is based on [Keep a Changelog](https://keepachangel
 
 ### Added 0.1.0
 
-- Add global styles.
 - Initiate React and add required dependencies.
 - Import FontAwesome, normalize.css, and modular scale into global.sass.
+- Build page structure and global styles.
+- Add basic Redux implementation.
 
 ### Changed 0.1.0
 
