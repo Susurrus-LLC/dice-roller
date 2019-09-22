@@ -1,5 +1,10 @@
-import { createStore } from 'redux'
-import diceApp from './reducers'
+import { combineReducers, createStore } from 'redux'
+import { options, results } from './reducers'
+
+const diceApp = combineReducers({
+  options,
+  results
+})
 
 const store = createStore(diceApp)
 
