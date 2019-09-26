@@ -17,86 +17,62 @@ export const CLEAR_RESULTS = 'CLEAR_RESULTS'
 
 // action creators
 
-export const setDNum = (number: DNum): ActionTypes => (
-  {
-    type: SET_DNUM,
-    number
-  }
-)
+export const setDNum = (number: DNum): ActionTypes => ({
+  type: SET_DNUM,
+  number
+})
 
-export const incDNum = (number: DNum): ActionTypes => (
-  {
-    type: INC_DNUM,
-    number: number + 1
-  }
-)
+export const incDNum = (number: DNum): ActionTypes => ({
+  type: INC_DNUM,
+  number: number + 1
+})
 
-export const decDNum = (number: DNum): ActionTypes => (
-  {
-    type: DEC_DNUM,
-    number: number - 1
-  }
-)
+export const decDNum = (number: DNum): ActionTypes => ({
+  type: DEC_DNUM,
+  number: number - 1
+})
 
-export const setDType = (dType: DType): ActionTypes => (
-  {
-    type: SET_DTYPE,
-    dType
-  }
-)
+export const setDType = (dType: DType): ActionTypes => ({
+  type: SET_DTYPE,
+  dType
+})
 
-export const setDSides = (dSides: DSides): ActionTypes => (
-  {
-    type: SET_DSIDES,
-    dSides
-  }
-)
+export const setDSides = (dSides: DSides): ActionTypes => ({
+  type: SET_DSIDES,
+  dSides
+})
 
-export const incDSides = (dSides: DSides): ActionTypes => (
-  {
-    type: INC_DSIDES,
-    dSides: dSides + 1
-  }
-)
+export const incDSides = (dSides: DSides): ActionTypes => ({
+  type: INC_DSIDES,
+  dSides: dSides + 1
+})
 
-export const decDSides = (dSides: DSides): ActionTypes => (
-  {
-    type: DEC_DSIDES,
-    dSides: dSides - 1
-  }
-)
+export const decDSides = (dSides: DSides): ActionTypes => ({
+  type: DEC_DSIDES,
+  dSides: dSides - 1
+})
 
-export const setMod = (modifier: Modifier): ActionTypes => (
-  {
-    type: SET_MOD,
-    modifier
-  }
-)
+export const setMod = (modifier: Modifier): ActionTypes => ({
+  type: SET_MOD,
+  modifier
+})
 
-export const incMod = (modifier: Modifier): ActionTypes => (
-  {
-    type: INC_MOD,
-    modifier: modifier + 1
-  }
-)
+export const incMod = (modifier: Modifier): ActionTypes => ({
+  type: INC_MOD,
+  modifier: modifier + 1
+})
 
-export const decMod = (modifier: Modifier): ActionTypes => (
-  {
-    type: DEC_MOD,
-    modifier: modifier - 1
-  }
-)
+export const decMod = (modifier: Modifier): ActionTypes => ({
+  type: DEC_MOD,
+  modifier: modifier - 1
+})
 
-export const setResult = (result: Result): ActionTypes => (
-  {
-    type: SET_RESULT,
-    result
-  }
-)
+export const setResult = (result: Result): ActionTypes => ({
+  type: SET_RESULT,
+  result
+})
 
-export const clearResults = (): ActionTypes => (
-  {
-    type: CLEAR_RESULTS,
-    results: []
-  }
-)
+export const clearResults = (): ActionTypes => ({
+  type: CLEAR_RESULTS,
+  results: []
+})
