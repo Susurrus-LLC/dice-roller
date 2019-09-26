@@ -1,4 +1,4 @@
-import { SET_DNUM, INC_DNUM, DEC_DNUM, SET_DTYPE, SET_DSIDES, INC_DSIDES, DEC_DSIDES, SET_MOD, INC_MOD, DEC_MOD, SET_RESULT } from './actions'
+import { SET_DNUM, INC_DNUM, DEC_DNUM, SET_DTYPE, SET_DSIDES, INC_DSIDES, DEC_DSIDES, SET_MOD, INC_MOD, DEC_MOD, SET_RESULT, CLEAR_RESULTS } from './actions'
 
 // states
 
@@ -46,4 +46,9 @@ interface SetResultAction {
   result: number
 }
 
-export type ActionTypes = SetNumAction | SetTypeAction | SetDSidesAction | SetModAction | SetResultAction
+interface ClearResultsAction {
+  type: typeof CLEAR_RESULTS,
+  results: number[]
+}
+
+export type ActionTypes = SetNumAction | SetTypeAction | SetDSidesAction | SetModAction | SetResultAction | ClearResultsAction

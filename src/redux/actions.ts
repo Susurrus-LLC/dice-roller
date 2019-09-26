@@ -13,6 +13,7 @@ export const SET_MOD = 'SET_MOD'
 export const INC_MOD = 'INC_MOD'
 export const DEC_MOD = 'DEC_MOD'
 export const SET_RESULT = 'SET_RESULT'
+export const CLEAR_RESULTS = 'CLEAR_RESULTS'
 
 // action creators
 
@@ -90,5 +91,12 @@ export const setResult = (result: Result): ActionTypes => (
   {
     type: SET_RESULT,
     result
+  }
+)
+
+export const clearResults = (): ActionTypes => (
+  {
+    type: CLEAR_RESULTS,
+    results: []
   }
 )
