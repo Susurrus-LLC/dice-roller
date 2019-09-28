@@ -21,13 +21,8 @@ const Input: React.FC<Props> = ({
   setDice,
   handleSubmit
 }) => {
-  const handleNumbers = (num: number, min?: number): number => (
-    min
-    ? num < min
-      ? min
-      : Math.round(num)
-    : Math.round(num)
-  )
+  const handleNumbers = (num: number, min?: number): number =>
+    min ? (num < min ? min : Math.round(num)) : Math.round(num)
 
   const handleDieChange = (
     die: Die,
