@@ -1,8 +1,8 @@
 import { combineReducers, createStore } from 'redux'
-import { options, results } from './reducers'
+import { dice, results } from './reducers'
 
 const diceApp = combineReducers({
-  options,
+  dice,
   results
 })
 
