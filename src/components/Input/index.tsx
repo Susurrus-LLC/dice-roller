@@ -73,10 +73,9 @@ const Input: React.FC<Props> = ({
         name='diceForm'
         autoComplete='false'
       >
-        <div>
-          <label>
+        <div className={styles.dTypeRow}>
+          <label className={styles.dType}>
             <input
-              className={styles.radio}
               name='dtype'
               type='radio'
               value='n'
@@ -85,9 +84,8 @@ const Input: React.FC<Props> = ({
             />{' '}
             Number
           </label>
-          <label>
+          <label className={styles.dType}>
             <input
-              className={styles.radio}
               name='dtype'
               type='radio'
               value='f'
