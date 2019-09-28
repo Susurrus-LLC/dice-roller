@@ -12,11 +12,12 @@ const Results: React.FC<Props> = ({ results }) => {
   const resultRow = [...results].reverse().map(result => {
     const concatDice = result.dice.map((die, i) => (
       <li className={styles.die} key={i}>
-        {`${die.multiplier} × ( ${die.number}d${die.sides} ${
-          die.modifier < 0 ? '−' : '+'
-        } ${Math.abs(die.modifier)} ) ${die.mulMod < 0 ? '−' : '+'} ${Math.abs(
-          die.mulMod
-        )}`}
+        {`${die.multiplier} × ( ${die.number}d${
+          result.type === 'n' ? die.sides : 'f'
+        } ${die.modifier < 0 ? '−' : '+'} ${Math.abs(die.modifier)} ) ${
+          die.mulMod < 0 ? '−' : '+'
+        } ${Math.abs(die.mulMod)} = `}
+        <span className={styles.dieResult}>{die.result}</span>
       </li>
     ))
 
