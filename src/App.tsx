@@ -17,6 +17,12 @@ export interface Die {
   modifier: number
 }
 
+export interface Result {
+  dice: Die[]
+  result: number
+  rolled: Date
+}
+
 export const defaultDie: Die = {
   multiplier: 1,
   number: 1,
@@ -29,6 +35,19 @@ const App: React.FC = () => {
   const [gmult, setGmult] = useState(1)
   const [gmod, setGmod] = useState(0)
   const [dice, setDice] = useState<Die[]>([defaultDie])
+  const [results, setResults] = useState<Result[]>([])
+
+  const handleSubmit = (): void => {
+    const newResults = [...results]
+
+    newResults.push({
+      dice: [defaultDie],
+      result: 10,
+      rolled: new Date()
+    })
+
+    setResults(newResults)
+  }
 
   return (
     <>
@@ -43,8 +62,9 @@ const App: React.FC = () => {
           setGmod={setGmod}
           dice={dice}
           setDice={setDice}
+          handleSubmit={handleSubmit}
         />
-        <Results />
+        <Results results={results} />
         <Analysis />
       </main>
       <Footer />

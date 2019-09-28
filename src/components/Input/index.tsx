@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
 import { DieType, Die, defaultDie } from '../../App'
 
@@ -15,6 +15,7 @@ interface Props {
   setGmod: React.Dispatch<React.SetStateAction<number>>
   dice: Die[]
   setDice: React.Dispatch<React.SetStateAction<Die[]>>
+  handleSubmit: () => void
 }
 
 const Input: React.FC<Props> = ({
@@ -25,7 +26,8 @@ const Input: React.FC<Props> = ({
   gmod = 0,
   setGmod,
   dice = [defaultDie],
-  setDice
+  setDice,
+  handleSubmit
 }) => {
   const handleNumbers = (num: number, min: number, handler: Function): void => {
     if (num < min) {
@@ -64,6 +66,11 @@ const Input: React.FC<Props> = ({
       />
     )
   })
+
+  const submit = (e: SyntheticEvent) => {
+    e.preventDefault()
+    handleSubmit()
+  }
 
   return (
     <section className={styles.input}>
@@ -119,6 +126,15 @@ const Input: React.FC<Props> = ({
             onChange={e => handleNumbers(+e.target.value, 1, setGmod)}
           />
         </div>
+        <button
+          className={styles.submit}
+          name='submit'
+          type='submit'
+          value='submit'
+          onClick={submit}
+        >
+          Roll
+        </button>
       </form>
     </section>
   )
