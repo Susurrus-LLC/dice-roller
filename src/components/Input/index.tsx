@@ -1,6 +1,9 @@
 import React from 'react'
 
 import { DieType, Die, defaultDie } from '../../App'
+
+import DiceInputs from '../DiceInputs'
+
 import styles from './Input.module.sass'
 
 interface Props {
@@ -52,56 +55,13 @@ const Input: React.FC<Props> = ({
 
   const diceInputs = dice.map((die, i) => {
     return (
-      <div className={styles.dieRow} key={i}>
-        <input
-          className={styles.inputs}
-          name={`multiplier-${i}`}
-          type='number'
-          min={1}
-          step={1}
-          value={die.multiplier}
-          onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
-        />{' '}
-        &times;{' '}
-        <input
-          className={styles.inputs}
-          name={`number-${i}`}
-          type='number'
-          min={1}
-          step={1}
-          value={die.number}
-          onChange={e => handleDieChange(die, +e.target.value, 'num', i)}
-        />{' '}
-        d
-        {dType === 'n' ? (
-          <input
-            className={styles.inputs}
-            name={`sides-${i}`}
-            type='number'
-            min={2}
-            step={1}
-            value={die.sides}
-            onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
-          />
-        ) : dType === 'f' ? (
-          <input
-            className={styles.inputs}
-            name={`sides-${i}`}
-            type='text'
-            value='f'
-            readOnly
-          />
-        ) : null}{' '}
-        +{' '}
-        <input
-          className={styles.inputs}
-          name={`modifier-${i}`}
-          type='number'
-          step={1}
-          value={die.modifier}
-          onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
-        />
-      </div>
+      <DiceInputs
+        dType={dType}
+        die={die}
+        i={i}
+        handleDieChange={handleDieChange}
+        key={i}
+      />
     )
   })
 
