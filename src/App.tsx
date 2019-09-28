@@ -16,6 +16,7 @@ export interface Die {
   sides: number
   modifier: number
   mulMod: number
+  rolls?: number[]
   result?: number
 }
 
@@ -36,22 +37,26 @@ export const defaultDie: Die = {
 
 const App: React.FC = () => {
   const [dType, setDtype] = useState<DieType>('n')
-  const [dice, setDice] = useState<Die[]>([defaultDie])
+  const [dice, setDice] = useState<Die[]>([defaultDie, defaultDie])
   const [results, setResults] = useState<Result[]>([])
 
-  const calcResult = (die: Die): number => {
+  const calcResult = (die: Die) => {
     const { multiplier, number, sides, modifier, mulMod } = die
     let mul = multiplier
     let num = number
     let total = 0
+    const rolls: number[] = []
 
     for (let i = mul; i > 0; i--) {
       let tempTotal = 0
       for (let j = num; j > 0; j--) {
-        tempTotal +=
+        const roll =
           dType === 'n'
             ? Math.ceil(Math.random() * sides)
             : Math.floor(Math.random() * 3) - 1
+
+        rolls.push(roll)
+        tempTotal += roll
       }
 
       tempTotal += modifier
@@ -61,7 +66,7 @@ const App: React.FC = () => {
 
     total += mulMod
 
-    return total
+    return { total, rolls }
   }
 
   const handleSubmit = (): void => {
@@ -70,8 +75,11 @@ const App: React.FC = () => {
     let result = 0
 
     dice.forEach(die => {
-      const newDie = JSON.parse(JSON.stringify(die))
-      newDie.result = calcResult(die)
+      const newDie: Die = JSON.parse(JSON.stringify(die))
+      const rollResult = calcResult(die)
+
+      newDie.rolls = rollResult.rolls
+      newDie.result = rollResult.total
       newDice.push(newDie)
       result += newDie.result
     })

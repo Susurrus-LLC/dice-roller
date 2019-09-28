@@ -11,14 +11,22 @@ interface Props {
 const Results: React.FC<Props> = ({ results }) => {
   const resultRow = [...results].reverse().map(result => {
     const concatDice = result.dice.map((die, i) => (
-      <li className={styles.die} key={i}>
-        {`${die.multiplier} × ( ${die.number}d${
-          result.type === 'n' ? die.sides : 'f'
-        } ${die.modifier < 0 ? '−' : '+'} ${Math.abs(die.modifier)} ) ${
-          die.mulMod < 0 ? '−' : '+'
-        } ${Math.abs(die.mulMod)} = `}
-        <span className={styles.dieResult}>{die.result}</span>
-      </li>
+      <React.Fragment key={i}>
+        <li className={styles.die}>
+          <span className={styles.code}>
+            {`${die.multiplier} × ( ${die.number}d${
+              result.type === 'n' ? die.sides : 'f'
+            } ${die.modifier < 0 ? '−' : '+'} ${Math.abs(die.modifier)} ) ${
+              die.mulMod < 0 ? '−' : '+'
+            } ${Math.abs(die.mulMod)} = `}
+            <span className={styles.dieResult}>{die.result}</span>
+          </span>
+          <span className={styles.rolls}>
+            <i className={`${styles.icon} fas fa-dice-d20`} />
+            {` ${die.rolls ? die.rolls.join(', ') : null}`}
+          </span>
+        </li>
+      </React.Fragment>
     ))
 
     return (
