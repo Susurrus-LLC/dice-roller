@@ -108,7 +108,7 @@ const App: React.FC = () => {
           handleSubmit={handleSubmit}
         />
         <Results results={results} />
-        <Analysis />
+        <Analysis dType={dType} dice={dice} />
       </main>
       <Footer />
     </>
