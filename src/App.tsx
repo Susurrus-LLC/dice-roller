@@ -15,6 +15,7 @@ export interface Die {
   number: number
   sides: number
   modifier: number
+  mulMod: number
 }
 
 export interface Result {
@@ -27,13 +28,12 @@ export const defaultDie: Die = {
   multiplier: 1,
   number: 1,
   sides: 20,
-  modifier: 0
+  modifier: 0,
+  mulMod: 0
 }
 
 const App: React.FC = () => {
   const [dType, setDtype] = useState<DieType>('n')
-  const [gmult, setGmult] = useState(1)
-  const [gmod, setGmod] = useState(0)
   const [dice, setDice] = useState<Die[]>([defaultDie])
   const [results, setResults] = useState<Result[]>([])
 
@@ -56,10 +56,6 @@ const App: React.FC = () => {
         <Input
           dType={dType}
           setDtype={setDtype}
-          gmult={gmult}
-          setGmult={setGmult}
-          gmod={gmod}
-          setGmod={setGmod}
           dice={dice}
           setDice={setDice}
           handleSubmit={handleSubmit}

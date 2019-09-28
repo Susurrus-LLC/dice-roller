@@ -9,7 +9,7 @@ it('renders without crashing', () => {
   const handleDieChange = (
     die: Die,
     num: number,
-    change: 'mul' | 'num' | 'sid' | 'mod',
+    change: 'mul' | 'num' | 'sid' | 'mod' | 'mulmod',
     i: number
   ): void => {
     return

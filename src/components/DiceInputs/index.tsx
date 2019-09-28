@@ -13,7 +13,7 @@ interface Props {
   handleDieChange: (
     die: Die,
     num: number,
-    change: 'mul' | 'num' | 'sid' | 'mod',
+    change: 'mul' | 'num' | 'sid' | 'mod' | 'mulmod',
     i: number
   ) => void
 }
@@ -24,7 +24,7 @@ const DiceInputs: React.FC<Props> = ({
   i = 0,
   handleDieChange
 }) => (
-  <div className={styles.dieRow} key={i}>
+  <p className={styles.dieRow} key={i}>
     <input
       className={inputStyles.inputs}
       name={`multiplier-${i}`}
@@ -34,7 +34,7 @@ const DiceInputs: React.FC<Props> = ({
       value={die.multiplier}
       onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
     />{' '}
-    &times;{' '}
+    &times; ({' '}
     <input
       className={inputStyles.inputs}
       name={`number-${i}`}
@@ -72,8 +72,17 @@ const DiceInputs: React.FC<Props> = ({
       step={1}
       value={die.modifier}
       onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
+    />{' '}
+    ) +{' '}
+    <input
+      className={inputStyles.inputs}
+      name={`mulmod-${i}`}
+      type='number'
+      step={1}
+      value={die.mulMod}
+      onChange={e => handleDieChange(die, +e.target.value, 'mulmod', i)}
     />
-  </div>
+  </p>
 )
 
 export default DiceInputs
