@@ -41,7 +41,7 @@ const App: React.FC = () => {
     const newResults = [...results]
 
     newResults.push({
-      dice: [defaultDie],
+      dice: [...dice],
       result: 10,
       rolled: new Date()
     })
