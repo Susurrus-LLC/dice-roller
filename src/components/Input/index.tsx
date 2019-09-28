@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import styles from './Input.module.sass'
 
 interface Die {
   multiplier: number
   number: number
-  sides: number
+  sides: number | 'f'
   modifier: number
 }
 
@@ -30,7 +30,12 @@ const Input: React.FC = () => {
     }
   }
 
-  const handleDieChange = (die: Die, num: number, change: 'mul' | 'num' | 'sid' | 'mod', i: number): void => {
+  const handleDieChange = (
+    die: Die,
+    num: number,
+    change: 'mul' | 'num' | 'sid' | 'mod',
+    i: number
+  ): void => {
     const newDice = [...dice]
 
     newDice.splice(i, 1, {
@@ -43,48 +48,60 @@ const Input: React.FC = () => {
     setDice(newDice)
   }
 
-  const diceInputs = dice.map((die, i) => (
-    <div className={styles.dieRow} key={i}>
-      <input
-        className={styles.inputs}
-        name={`multiplier-${i}`}
-        type='number'
-        min={1}
-        step={1}
-        value={die.multiplier}
-        onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
-      />{' '}
-      &times;{' '}
-      <input
-        className={styles.inputs}
-        name={`number-${i}`}
-        type='number'
-        min={1}
-        step={1}
-        value={die.number}
-        onChange={e => handleDieChange(die, +e.target.value, 'num', i)}
-      />{' '}
-      d
-      <input
-        className={styles.inputs}
-        name={`sides-${i}`}
-        type='number'
-        min={2}
-        step={1}
-        value={die.sides}
-        onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
-      />{' '}
-      +{' '}
-      <input
-        className={styles.inputs}
-        name={`modifier-${i}`}
-        type='number'
-        step={1}
-        value={die.modifier}
-        onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
-      />
-    </div>
-  ))
+  const diceInputs = dice.map((die, i) => {
+    return (
+      <div className={styles.dieRow} key={i}>
+        <input
+          className={styles.inputs}
+          name={`multiplier-${i}`}
+          type='number'
+          min={1}
+          step={1}
+          value={die.multiplier}
+          onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
+        />{' '}
+        &times;{' '}
+        <input
+          className={styles.inputs}
+          name={`number-${i}`}
+          type='number'
+          min={1}
+          step={1}
+          value={die.number}
+          onChange={e => handleDieChange(die, +e.target.value, 'num', i)}
+        />{' '}
+        d
+        {dType === 'n' ? (
+          <input
+            className={styles.inputs}
+            name={`sides-${i}`}
+            type='number'
+            min={2}
+            step={1}
+            value={die.sides}
+            onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
+          />
+        ) : dType === 'f' ? (
+          <input
+            className={styles.inputs}
+            name={`sides-${i}`}
+            type='text'
+            value='f'
+            readOnly
+          />
+        ) : null}{' '}
+        +{' '}
+        <input
+          className={styles.inputs}
+          name={`modifier-${i}`}
+          type='number'
+          step={1}
+          value={die.modifier}
+          onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
+        />
+      </div>
+    )
+  })
 
   return (
     <section className={styles.input}>
