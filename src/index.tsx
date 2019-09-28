@@ -5,9 +5,6 @@ import * as serviceWorker from './serviceWorker'
 import App from './App'
 import './global.sass'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById('root'))
 
 serviceWorker.register()
