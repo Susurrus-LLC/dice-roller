@@ -52,7 +52,7 @@ const App: React.FC = () => {
       for (let j = num; j > 0; j--) {
         const roll =
           dType === 'n'
-            ? Math.ceil(Math.random() * sides)
+            ? Math.floor(Math.random() * sides) + 1
             : Math.floor(Math.random() * 3) - 1
 
         rolls.push(roll)
