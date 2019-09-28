@@ -4,7 +4,7 @@ import styles from './Header.module.sass'
 
 const Header: React.FC = () => (
   <header className={styles.header}>
-    <h1 className='title'>Dice Roller</h1>
+    <h1 className={styles.title}>Dice Roller</h1>
   </header>
 )
 
