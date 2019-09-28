@@ -10,10 +10,10 @@ interface Props {
 
 const Results: React.FC<Props> = ({ results }) => {
   const resultRow = [...results].reverse().map(result => (
-    <div key={JSON.stringify(result.rolled)}>
-      <p>{JSON.stringify(result.rolled)}</p>
-      <p>{JSON.stringify(result.dice)}</p>
-      <p>{result.result}</p>
+    <div className={styles.roll} key={JSON.stringify(result.rolled)}>
+      <p className={styles.rollTime}>{result.rolled.toLocaleTimeString()}</p>
+      <p className={styles.dice}>{JSON.stringify(result.dice)}</p>
+      <p className={styles.result}>{result.result}</p>
     </div>
   ))
 
