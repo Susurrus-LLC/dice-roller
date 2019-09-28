@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
+import { DieType, Die, defaultDie } from '../../App'
 import styles from './Input.module.sass'
 
-interface Die {
-  multiplier: number
-  number: number
-  sides: number | 'f'
-  modifier: number
+interface Props {
+  dType: DieType
+  setDtype: React.Dispatch<React.SetStateAction<DieType>>
+  gmult: number
+  setGmult: React.Dispatch<React.SetStateAction<number>>
+  gmod: number
+  setGmod: React.Dispatch<React.SetStateAction<number>>
+  dice: Die[]
+  setDice: React.Dispatch<React.SetStateAction<Die[]>>
 }
 
-const defaultDie: Die = {
-  multiplier: 1,
-  number: 1,
-  sides: 20,
-  modifier: 0
-}
-
-const Input: React.FC = () => {
-  const [dType, setDtype] = useState<'n' | 'f'>('n')
-  const [gmult, setGmult] = useState(1)
-  const [gmod, setGmod] = useState(0)
-  const [dice, setDice] = useState<Die[]>([defaultDie])
-
+const Input: React.FC<Props> = ({
+  dType = 'n',
+  setDtype,
+  gmult = 1,
+  setGmult,
+  gmod = 0,
+  setGmod,
+  dice = [defaultDie],
+  setDice
+}) => {
   const handleNumbers = (num: number, min: number, handler: Function): void => {
     if (num < min) {
       handler(min)
