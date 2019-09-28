@@ -22,12 +22,25 @@ const Input: React.FC = () => {
   const [gmod, setGmod] = useState(0)
   const [dice, setDice] = useState<Die[]>([defaultDie])
 
-  const handleNumbers = (num: number, min: number, handler: Function) => {
+  const handleNumbers = (num: number, min: number, handler: Function): void => {
     if (num < min) {
       handler(min)
     } else {
       handler(Math.round(num))
     }
+  }
+
+  const handleDieChange = (die: Die, num: number, change: 'mul' | 'num' | 'sid' | 'mod', i: number): void => {
+    const newDice = [...dice]
+
+    newDice.splice(i, 1, {
+      multiplier: change === 'mul' ? num : die.multiplier,
+      number: change === 'num' ? num : die.number,
+      sides: change === 'sid' ? num : die.sides,
+      modifier: change === 'mod' ? num : die.modifier
+    })
+
+    setDice(newDice)
   }
 
   const diceInputs = dice.map((die, i) => (
@@ -39,6 +52,7 @@ const Input: React.FC = () => {
         min={1}
         step={1}
         value={die.multiplier}
+        onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
       />{' '}
       &times;{' '}
       <input
@@ -48,6 +62,7 @@ const Input: React.FC = () => {
         min={1}
         step={1}
         value={die.number}
+        onChange={e => handleDieChange(die, +e.target.value, 'num', i)}
       />{' '}
       d
       <input
@@ -57,6 +72,7 @@ const Input: React.FC = () => {
         min={2}
         step={1}
         value={die.sides}
+        onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
       />{' '}
       +{' '}
       <input
@@ -65,6 +81,7 @@ const Input: React.FC = () => {
         type='number'
         step={1}
         value={die.modifier}
+        onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
       />
     </div>
   ))
