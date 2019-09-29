@@ -22,8 +22,12 @@ const Results: React.FC<Props> = ({ results }) => {
             <span className={styles.dieResult}>{die.result}</span>
           </span>
           <span className={styles.rolls}>
-            <i className={`${styles.icon} fas fa-dice-d20`} />
-            {` ${die.rolls ? die.rolls.join(', ') : null}`}
+            <span className={styles.rollsIcon}>
+              <i className={`${styles.icon} fas fa-dice-d20`} />
+            </span>
+            <span className={styles.rollsNums}>
+              {` ${die.rolls ? die.rolls.join(', ') : null}`}
+            </span>
           </span>
         </li>
       </React.Fragment>
