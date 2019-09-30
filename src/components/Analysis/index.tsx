@@ -58,15 +58,38 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
     return avg
   }
 
+  const calcProb = (
+    target: number,
+    attempts?: number[],
+    iteration?: number
+  ): Probability => {
+    return {
+      val: target,
+      prob: 0
+    }
+  }
+
+  const diceProbs = (min: number, max: number): Probability[] => {
+    const probabilities: Probability[] = []
+
+    for (let i = min; i <= max; i++) {
+      probabilities.push(calcProb(i))
+    }
+
+    return probabilities
+  }
+
   const min = calcMinMax('min')
   const max = calcMinMax('max')
   const avg = calcAvg()
+  const probs = diceProbs(min, max)
 
   return (
     <section className={styles.analysis}>
       <p>Min: {min}</p>
       <p>Max: {max}</p>
       <p>Avg: {avg}</p>
+      <p>Probabilities: {JSON.stringify(probs)}</p>
     </section>
   )
 }
