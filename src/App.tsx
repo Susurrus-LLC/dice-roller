@@ -91,8 +91,6 @@ const App: React.FC = () => {
       rolled: new Date()
     })
 
-    console.log(newResults)
-
     setResults(newResults)
   }
 
