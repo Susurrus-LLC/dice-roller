@@ -58,11 +58,28 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
     return avg
   }
 
+  const getSidesArr = (): number[] => {
+    const arr: number[] = []
+
+    dice.forEach(die => {
+      for (let i = die.multiplier * die.number; i > 0; i--) {
+        if (dType === 'n') {
+          arr.push(die.sides)
+        } else {
+          arr.push(3)
+        }
+      }
+    })
+
+    return arr
+  }
+
   const calcProb = (
     target: number,
-    attempts?: number[],
+    attempts: number[],
     iteration?: number
   ): Probability => {
+
     return {
       val: target,
       prob: 0
@@ -71,9 +88,10 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
 
   const diceProbs = (min: number, max: number): Probability[] => {
     const probabilities: Probability[] = []
+    const sidesArr = getSidesArr()
 
     for (let i = min; i <= max; i++) {
-      probabilities.push(calcProb(i))
+      probabilities.push(calcProb(i, sidesArr))
     }
 
     return probabilities
