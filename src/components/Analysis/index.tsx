@@ -9,6 +9,11 @@ interface Props {
   dice: Die[]
 }
 
+interface Probability {
+  val: number
+  prob: number
+}
+
 const Analysis: React.FC<Props> = ({ dType, dice }) => {
   const calcMinMax = (which: 'min' | 'max'): number => {
     let fullTotal = 0
@@ -23,10 +28,10 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
         let tempTotal = 0
         for (let j = num; j > 0; j--) {
           which === 'min'
-            ? tempTotal += dType === 'n' ? 1 : -1
+            ? (tempTotal += dType === 'n' ? 1 : -1)
             : which === 'max'
-              ? tempTotal += dType === 'n' ? sides : 1
-              : tempTotal += 0
+            ? (tempTotal += dType === 'n' ? sides : 1)
+            : (tempTotal += 0)
         }
 
         total += tempTotal + modifier
@@ -44,10 +49,10 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
     dice.forEach(die => {
       const { multiplier, number, sides, modifier, mulMod } = die
       dType === 'n'
-        ? avg += (((((sides + 1) / 2) * number) + modifier) * multiplier) + mulMod
+        ? (avg += (((sides + 1) / 2) * number + modifier) * multiplier + mulMod)
         : dType === 'f'
-          ? avg += (modifier * multiplier) + mulMod
-          : avg += 0
+        ? (avg += modifier * multiplier + mulMod)
+        : (avg += 0)
     })
 
     return avg
