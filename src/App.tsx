@@ -8,14 +8,13 @@ import Results from './components/Results'
 
 import styles from './App.module.sass'
 
-export type DieType = 'n' | 'f'
+export type DieType = number | 'f'
 
 export interface Die {
-  multiplier: number
   number: number
-  sides: number
+  sides: DieType
+  other: boolean
   modifier: number
-  mulMod: number
   rolls?: number[]
   result?: number
 }
@@ -28,51 +27,40 @@ export interface Result {
 }
 
 export const defaultDie: Die = {
-  multiplier: 1,
   number: 2,
   sides: 10,
-  modifier: -1,
-  mulMod: 5
+  other: false,
+  modifier: -1
 }
 
 export const defaultDie2: Die = {
-  multiplier: 2,
   number: 3,
   sides: 4,
-  modifier: 1,
-  mulMod: -3
+  other: false,
+  modifier: 1
 }
 
 const App: React.FC = () => {
-  const [dType, setDtype] = useState<DieType>('n')
   const [dice, setDice] = useState<Die[]>([defaultDie, defaultDie2])
   const [results, setResults] = useState<Result[]>([])
 
   const calcResult = (die: Die) => {
-    const { multiplier, number, sides, modifier, mulMod } = die
-    let mul = multiplier
+    const { number, sides, modifier } = die
     let num = number
     let total = 0
     const rolls: number[] = []
 
-    for (let i = mul; i > 0; i--) {
-      let tempTotal = 0
-      for (let j = num; j > 0; j--) {
-        const roll =
-          dType === 'n'
-            ? Math.floor(Math.random() * sides) + 1
-            : Math.floor(Math.random() * 3) - 1
+    for (let j = num; j > 0; j--) {
+      const roll =
+        typeof sides === 'number'
+          ? Math.floor(Math.random() * sides) + 1
+          : Math.floor(Math.random() * 3) - 1
 
-        rolls.push(roll)
-        tempTotal += roll
-      }
-
-      tempTotal += modifier
-
-      total += tempTotal
+      rolls.push(roll)
+      total += roll
     }
 
-    total += mulMod
+    total += modifier
 
     return { total, rolls }
   }
@@ -93,7 +81,6 @@ const App: React.FC = () => {
     })
 
     newResults.push({
-      type: dType,
       dice: newDice,
       result: result,
       rolled: new Date()
@@ -107,14 +94,12 @@ const App: React.FC = () => {
       <Header />
       <main className={styles.main}>
         <Input
-          dType={dType}
-          setDtype={setDtype}
           dice={dice}
           setDice={setDice}
           handleSubmit={handleSubmit}
         />
         <Results results={results} />
-        <Analysis dType={dType} dice={dice} />
+        <Analysis dice={dice} />
       </main>
       <Footer />
     </>

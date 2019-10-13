@@ -14,11 +14,7 @@ const Results: React.FC<Props> = ({ results }) => {
       <React.Fragment key={i}>
         <li className={styles.die}>
           <span className={styles.code}>
-            {`${die.multiplier} × ( ${die.number}d${
-              result.type === 'n' ? die.sides : 'f'
-            } ${die.modifier < 0 ? '−' : '+'} ${Math.abs(die.modifier)} ) ${
-              die.mulMod < 0 ? '−' : '+'
-            } ${Math.abs(die.mulMod)} = `}
+            {`${die.number}d${die.sides} ${die.modifier < 0 ? '−' : '+'} ${Math.abs(die.modifier)} = `}
             <span className={styles.dieResult}>{die.result}</span>
           </span>
           <span className={styles.rolls}>
