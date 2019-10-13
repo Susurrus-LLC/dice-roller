@@ -26,7 +26,7 @@ const DiceInputs: React.FC<Props> = ({
     <input
       className={inputStyles.inputs}
       name={`number-${i}`}
-      label='number of dice'
+      aria-label='number of dice'
       type='number'
       min={1}
       step={1}
@@ -37,7 +37,7 @@ const DiceInputs: React.FC<Props> = ({
     <select
       className={inputStyles.inputs}
       name={`sides-${i}`}
-      label='die sides'
+      aria-label='die sides'
       value={die.sides}
       onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
     >
@@ -55,7 +55,7 @@ const DiceInputs: React.FC<Props> = ({
     <input
       className={inputStyles.inputs}
       name={`modifier-${i}`}
-      label='modifier'
+      aria-label='modifier'
       type='number'
       step={1}
       value={die.modifier}
