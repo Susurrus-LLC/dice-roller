@@ -29,15 +29,23 @@ export interface Result {
 
 export const defaultDie: Die = {
   multiplier: 1,
-  number: 1,
-  sides: 20,
-  modifier: 0,
-  mulMod: 0
+  number: 2,
+  sides: 10,
+  modifier: -1,
+  mulMod: 5
+}
+
+export const defaultDie2: Die = {
+  multiplier: 2,
+  number: 3,
+  sides: 4,
+  modifier: 1,
+  mulMod: -3
 }
 
 const App: React.FC = () => {
   const [dType, setDtype] = useState<DieType>('n')
-  const [dice, setDice] = useState<Die[]>([defaultDie, defaultDie])
+  const [dice, setDice] = useState<Die[]>([defaultDie, defaultDie2])
   const [results, setResults] = useState<Result[]>([])
 
   const calcResult = (die: Die) => {
