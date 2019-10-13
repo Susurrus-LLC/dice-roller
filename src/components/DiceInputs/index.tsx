@@ -1,25 +1,23 @@
 import React from 'react'
 
-import { DieType, Die, defaultDie } from '../../App'
+import { Die, defaultDie } from '../../App'
 
 import inputStyles from '../Input/Input.module.sass'
 
 import styles from './DiceInputs.module.sass'
 
 interface Props {
-  dType: DieType
   die: Die
   i: number
   handleDieChange: (
     die: Die,
     num: number,
-    change: 'mul' | 'num' | 'sid' | 'mod' | 'mulmod',
+    change: 'num' | 'sid' | 'oth' | 'mod',
     i: number
   ) => void
 }
 
 const DiceInputs: React.FC<Props> = ({
-  dType = 'n',
   die = defaultDie,
   i = 0,
   handleDieChange
@@ -27,17 +25,8 @@ const DiceInputs: React.FC<Props> = ({
   <p className={styles.dieRow} key={i}>
     <input
       className={inputStyles.inputs}
-      name={`multiplier-${i}`}
-      type='number'
-      min={1}
-      step={1}
-      value={die.multiplier}
-      onChange={e => handleDieChange(die, +e.target.value, 'mul', i)}
-    />{' '}
-    &times; ({' '}
-    <input
-      className={inputStyles.inputs}
       name={`number-${i}`}
+      label='number of dice'
       type='number'
       min={1}
       step={1}
@@ -45,42 +34,32 @@ const DiceInputs: React.FC<Props> = ({
       onChange={e => handleDieChange(die, +e.target.value, 'num', i)}
     />{' '}
     d
-    {dType === 'n' ? (
-      <input
-        className={inputStyles.inputs}
-        name={`sides-${i}`}
-        type='number'
-        min={2}
-        step={1}
-        value={die.sides}
-        onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
-      />
-    ) : dType === 'f' ? (
-      <input
-        className={inputStyles.inputs}
-        name={`sides-${i}`}
-        type='text'
-        value='f'
-        readOnly
-      />
-    ) : null}{' '}
+    <select
+      className={inputStyles.inputs}
+      name={`sides-${i}`}
+      label='die sides'
+      value={die.sides}
+      onChange={e => handleDieChange(die, +e.target.value, 'sid', i)}
+    >
+      <option value={20}>20</option>
+      <option value={12}>12</option>
+      <option value={10}>10</option>
+      <option value={8}>8</option>
+      <option value={6}>6</option>
+      <option value={4}>4</option>
+      <option value={2}>2</option>
+      <option value='f'>fudge</option>
+      <option value='other'>other</option>
+    </select>{' '}
     +{' '}
     <input
       className={inputStyles.inputs}
       name={`modifier-${i}`}
+      label='modifier'
       type='number'
       step={1}
       value={die.modifier}
       onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
-    />{' '}
-    ) +{' '}
-    <input
-      className={inputStyles.inputs}
-      name={`mulmod-${i}`}
-      type='number'
-      step={1}
-      value={die.mulMod}
-      onChange={e => handleDieChange(die, +e.target.value, 'mulmod', i)}
     />
   </p>
 )

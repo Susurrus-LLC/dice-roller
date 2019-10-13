@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { DieType, Die } from '../../App'
+import { Die } from '../../App'
 
 import styles from './Analysis.module.sass'
 
 interface Props {
-  dType: DieType
   dice: Die[]
 }
 
@@ -14,45 +13,34 @@ interface Probability {
   prob: number
 }
 
-const Analysis: React.FC<Props> = ({ dType, dice }) => {
+const Analysis: React.FC<Props> = ({ dice }) => {
   const calcMinMax = (which: 'min' | 'max'): number => {
-    let fullTotal = 0
+    let total = 0
 
     dice.forEach(die => {
-      const { multiplier, number, sides, modifier, mulMod } = die
-      let mul = multiplier
-      let num = number
-      let total = 0
+      const { number, sides, modifier } = die
 
-      for (let i = mul; i > 0; i--) {
-        let tempTotal = 0
-        for (let j = num; j > 0; j--) {
-          which === 'min'
-            ? (tempTotal += dType === 'n' ? 1 : -1)
-            : which === 'max'
-            ? (tempTotal += dType === 'n' ? sides : 1)
-            : (tempTotal += 0)
-        }
-
-        total += tempTotal + modifier
+      for (let i = number; i > 0; i--) {
+        which === 'min'
+          ? (total += sides === 'f' ? -1 : 1)
+          : which === 'max'
+            ? (total += sides === 'f' ? 1 : sides)
+            : (total += 0)
       }
 
-      fullTotal += total + mulMod
+      total += modifier
     })
 
-    return fullTotal
+    return total
   }
 
   const calcAvg = (): number => {
     let avg = 0
 
     dice.forEach(die => {
-      const { multiplier, number, sides, modifier, mulMod } = die
-      dType === 'n'
-        ? (avg += (((sides + 1) / 2) * number + modifier) * multiplier + mulMod)
-        : dType === 'f'
-        ? (avg += modifier * multiplier + mulMod)
-        : (avg += 0)
+      const { number, sides, modifier } = die
+
+      sides === 'f' ? (avg += modifier) : (avg += ((sides + 1) / 2) * number)
     })
 
     return avg
@@ -62,11 +50,11 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
     const arr: number[] = []
 
     dice.forEach(die => {
-      for (let i = die.multiplier * die.number; i > 0; i--) {
-        if (dType === 'n') {
-          arr.push(die.sides)
-        } else {
+      for (let i = die.number; i > 0; i--) {
+        if (die.sides === 'f') {
           arr.push(3)
+        } else {
+          arr.push(die.sides)
         }
       }
     })
@@ -74,12 +62,13 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
     return arr
   }
 
+  /*
   const calcDieResults = (rolls: number[]): number => {
     let total = 0
     let roll = 0
 
     dice.forEach(die => {
-      const { multiplier, number, modifier, mulMod } = die
+      const { number, modifier } = die
       let subtotal = 0
 
       for (let i = 0; i < multiplier; i++) {
@@ -148,18 +137,19 @@ const Analysis: React.FC<Props> = ({ dType, dice }) => {
 
     return probabilities
   }
+  */
 
   const min = calcMinMax('min')
   const max = calcMinMax('max')
   const avg = calcAvg()
-  const probs = diceProbs(min, max)
+  //const probs = diceProbs(min, max)
 
   return (
     <section className={styles.analysis}>
       <p>Min: {min}</p>
       <p>Max: {max}</p>
       <p>Avg: {avg}</p>
-      <p>Probabilities: {JSON.stringify(probs)}</p>
+      <p>Probabilities: to be calculated</p>
     </section>
   )
 }
