@@ -1,1 +1,16 @@
 @import '../../styles/variables'
+
+.add, .remove
+  font-size: ms(-1)
+  padding: ms(-14) ms(-5)
+  margin-left: ms(-5)
+
+.remove
+  background-color: $red
+  border: 1px solid transparentize(darken($red, 3), 0.75)
+
+  &:hover
+    background-color: darken($red, 3)
+
+  &:active
+    background-color: darken($red, 5)

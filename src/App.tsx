@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, SyntheticEvent } from 'react'
 
 import Analysis from './components/Analysis'
 import Footer from './components/Footer'
@@ -89,6 +89,26 @@ const App: React.FC = () => {
     setResults(newResults)
   }
 
+  const handleAddRemove = (e: SyntheticEvent): void => {
+    e.preventDefault()
+    const target = e.target as HTMLButtonElement
+    const action = target.getAttribute('data-action')
+    const die = +target.value
+    const newDice = [...dice]
+
+    if (action === 'add') {
+      if (die === newDice.length) {
+        newDice.push(defaultDie)
+      } else {
+        newDice.splice(die + 1, 0, defaultDie)
+      }
+    } else {
+      newDice.splice(die, 1)
+    }
+
+    setDice(newDice)
+  }
+
   return (
     <>
       <Header />
@@ -97,6 +117,7 @@ const App: React.FC = () => {
           dice={dice}
           setDice={setDice}
           handleSubmit={handleSubmit}
+          handleAddRemove={handleAddRemove}
         />
         <Results results={results} />
         <Analysis dice={dice} />

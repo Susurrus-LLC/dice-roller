@@ -10,12 +10,14 @@ interface Props {
   dice: Die[]
   setDice: React.Dispatch<React.SetStateAction<Die[]>>
   handleSubmit: () => void
+  handleAddRemove: (e: SyntheticEvent) => void
 }
 
 const Input: React.FC<Props> = ({
   dice = [defaultDie],
   setDice,
-  handleSubmit
+  handleSubmit,
+  handleAddRemove
 }) => {
   const handleNumbers = (num: number, min?: number): number =>
     min ? (num < min ? min : Math.round(num)) : Math.round(num)
@@ -43,6 +45,8 @@ const Input: React.FC<Props> = ({
       die={die}
       i={i}
       handleDieChange={handleDieChange}
+      handleAddRemove={handleAddRemove}
+      numDice={dice.length}
       key={i}
     />
   ))
