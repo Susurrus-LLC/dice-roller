@@ -27,21 +27,14 @@ export interface Result {
 }
 
 export const defaultDie: Die = {
-  number: 2,
-  sides: 10,
+  number: 1,
+  sides: 20,
   other: false,
-  modifier: -1
-}
-
-export const defaultDie2: Die = {
-  number: 3,
-  sides: 4,
-  other: false,
-  modifier: 1
+  modifier: 0
 }
 
 const App: React.FC = () => {
-  const [dice, setDice] = useState<Die[]>([defaultDie, defaultDie2])
+  const [dice, setDice] = useState<Die[]>([defaultDie])
   const [results, setResults] = useState<Result[]>([])
 
   const calcResult = (die: Die) => {
