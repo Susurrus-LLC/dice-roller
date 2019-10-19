@@ -46,6 +46,7 @@ const Input: React.FC<Props> = ({
       i={i}
       handleDieChange={handleDieChange}
       handleAddRemove={handleAddRemove}
+      numDice={dice.length}
       key={i}
     />
   ))

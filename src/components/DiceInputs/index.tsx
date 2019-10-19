@@ -16,21 +16,24 @@ interface Props {
     i: number
   ) => void
   handleAddRemove: (e: SyntheticEvent) => void
+  numDice: number
 }
 
 const DiceInputs: React.FC<Props> = ({
   die = defaultDie,
   i = 0,
   handleDieChange,
-  handleAddRemove
+  handleAddRemove,
+  numDice
 }) => {
   const addButton = () => (
     <button
       type='button'
       className={styles.add}
       name={`add-${i + 1}`}
+      data-action='add'
       aria-label='Add a new die'
-      value={`add-${i + 1}`}
+      value={i}
       onClick={handleAddRemove}
     >
       Add
@@ -42,8 +45,9 @@ const DiceInputs: React.FC<Props> = ({
       type='button'
       className={styles.remove}
       name={`remove-${i + 1}`}
+      data-action='remove'
       aria-label={`Remove die ${i + 1}`}
-      value={`remove-${i + 1}`}
+      value={i}
       onClick={handleAddRemove}
     >
       Remove
@@ -91,7 +95,7 @@ const DiceInputs: React.FC<Props> = ({
         onChange={e => handleDieChange(die, +e.target.value, 'mod', i)}
       />
       {addButton()}
-      {remButton()}
+      {numDice > 1 ? remButton() : null}
     </p>
   )
 }
