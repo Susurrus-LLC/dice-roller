@@ -11,6 +11,10 @@ The format of this changelog is based on [Keep a Changelog](https://keepachangel
 - Initiate React and add required dependencies.
 - Import FontAwesome, normalize.css, and modular scale into global.sass.
 - Build page structure and global styles.
+- Enable adding and removing dice.
+- Enable choosing the number of sides on the dice.
+- Calculate the results of rolls.
+- Analyze the minimum, maximum, and average results of rolls.
 
 ### Changed 0.1.0
 
