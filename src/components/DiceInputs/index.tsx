@@ -68,7 +68,7 @@ const DiceInputs: React.FC<Props> = ({
       />{' '}
       d
       <select
-        className={inputStyles.inputs}
+        className={inputStyles.selects}
         name={`sides-${i + 1}`}
         aria-label={`Dice ${i + 1} number of sides`}
         value={die.sides}
@@ -81,8 +81,8 @@ const DiceInputs: React.FC<Props> = ({
         <option value={6}>6</option>
         <option value={4}>4</option>
         <option value={2}>2</option>
-        <option value='f'>fudge</option>
-        <option value='other'>other</option>
+        <option value='f' disabled>fudge</option>
+        <option value='other' disabled>other</option>
       </select>{' '}
       +{' '}
       <input
