@@ -1,6 +1,6 @@
 {
   "name": "dice-roller",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dice roller that displays a probabilistic analysis",
   "homepage": "https://nai888.github.io/dice-roller/",
   "repository": {

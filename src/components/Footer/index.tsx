@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   const author = 'Ian A. Cook'
   const authorURL = 'https://github.com/nai888/'
   const appGhURL = 'https://github.com/nai888/dice-roller/'
-  const version = '0.1.0'
+  const version = '0.1.1'
 
   return (
     <footer className={styles.footer}>
