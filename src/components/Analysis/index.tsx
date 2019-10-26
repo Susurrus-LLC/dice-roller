@@ -40,7 +40,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     dice.forEach(die => {
       const { number, sides, modifier } = die
 
-      sides === 'f' ? (avg += modifier) : (avg += ((sides + 1) / 2) * number)
+      sides === 'f' ? (avg += modifier) : (avg += (number * ((sides + 1) / 2)) + modifier)
     })
 
     return avg
