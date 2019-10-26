@@ -14,6 +14,8 @@ interface Probability {
 }
 
 const Analysis: React.FC<Props> = ({ dice }) => {
+
+  // calculate the minimum or maximum result of a set of dice and modifiers
   const calcMinMax = (which: 'min' | 'max'): number => {
     let total = 0
 
@@ -34,6 +36,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return total
   }
 
+  // calculate the average result of a set of dice and modifiers
   const calcAvg = (): number => {
     let avg = 0
 
@@ -46,6 +49,21 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return avg
   }
 
+
+  // calculate the total possible results (including identicals) of a set of dice
+  const calcTotalPoss = (): number => {
+    let total = 0
+
+    dice.forEach(die => {
+      const { number, sides } = die
+
+      total += sides === 'f' ? number * 3 : number * sides
+    })
+
+    return total
+  }
+
+  // given a set of dice, create an array filled with the maximum roll for each die
   const getSidesArr = (): number[] => {
     const arr: number[] = []
 
@@ -62,7 +80,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return arr
   }
 
-  /*
+  // given an array of die rolls, add them together with their modifiers to get the final total
   const calcDieResults = (rolls: number[]): number => {
     let total = 0
     let roll = 0
@@ -71,17 +89,11 @@ const Analysis: React.FC<Props> = ({ dice }) => {
       const { number, modifier } = die
       let subtotal = 0
 
-      for (let i = 0; i < multiplier; i++) {
-        let subsubtotal = 0
-
-        for (let j = 0; j < number; j++, roll++) {
-          subsubtotal += rolls[roll]
-        }
-
-        subtotal += subsubtotal + modifier
+      for (let i = 0; i < number; i++, roll++) {
+        subtotal += rolls[roll]
       }
 
-      total += subtotal + mulMod
+      total += subtotal + modifier
     })
 
     return total
@@ -137,19 +149,13 @@ const Analysis: React.FC<Props> = ({ dice }) => {
 
     return probabilities
   }
-  */
-
-  const min = calcMinMax('min')
-  const max = calcMinMax('max')
-  const avg = calcAvg()
-  //const probs = diceProbs(min, max)
 
   return (
     <section className={styles.analysis}>
-      <p>Min: {min}</p>
-      <p>Max: {max}</p>
-      <p>Avg: {avg}</p>
-      <p>Probabilities: to be calculated</p>
+      <p>Min: {calcMinMax('min')}</p>
+      <p>Max: {calcMinMax('max')}</p>
+      <p>Avg: {calcAvg()}</p>
+      <p>Probabilities: to be calculated{/* diceProbs(min, max) */}: of {calcTotalPoss()} possible results</p>
     </section>
   )
 }
