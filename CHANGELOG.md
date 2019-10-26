@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format of this changelog is based on [Keep a Changelog](https://keepachangelog.com) and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased](<https://github.com/nai888/dice-roller/compare/v0.1.0...HEAD>)
+## [Unreleased](<https://github.com/nai888/dice-roller/compare/v0.1.1...HEAD>)
 
-### Added 0.1.1
+### Added 0.1.2
+
+## [v0.1.1](<https://github.com/nai888/dice-roller/compare/v0.1.0...v0.1.1>)
+
+### Changed 0.1.1
+
+- Fix the calculation of average roll to include the roll modifiers.
 
 ## [v0.1.0](<https://github.com/nai888/dice-roller/compare/e56c2f615ac986afaea71e5dde087087d2999443...v0.1.0>)
 
