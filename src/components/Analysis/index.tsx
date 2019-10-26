@@ -10,10 +10,12 @@ interface Props {
 
 interface Probability {
   val: number
-  prob: number
+  prob: string
 }
 
 const Analysis: React.FC<Props> = ({ dice }) => {
+
+  // calculate the minimum or maximum result of a set of dice and modifiers
   const calcMinMax = (which: 'min' | 'max'): number => {
     let total = 0
 
@@ -34,6 +36,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return total
   }
 
+  // calculate the average result of a set of dice and modifiers
   const calcAvg = (): number => {
     let avg = 0
 
@@ -46,6 +49,21 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return avg
   }
 
+
+  // calculate the total possible results (including identicals) of a set of dice
+  const calcTotalPoss = (): number => {
+    let total = 1
+
+    dice.forEach(die => {
+      const { number, sides } = die
+
+      total *= sides === 'f' ? number * 3 : Math.pow(sides, number)
+    })
+
+    return total
+  }
+
+  // given a set of dice, create an array filled with the maximum roll for each die
   const getSidesArr = (): number[] => {
     const arr: number[] = []
 
@@ -62,7 +80,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     return arr
   }
 
-  /*
+  // given an array of die rolls, add them together with their modifiers to get the final total
   const calcDieResults = (rolls: number[]): number => {
     let total = 0
     let roll = 0
@@ -71,52 +89,41 @@ const Analysis: React.FC<Props> = ({ dice }) => {
       const { number, modifier } = die
       let subtotal = 0
 
-      for (let i = 0; i < multiplier; i++) {
-        let subsubtotal = 0
-
-        for (let j = 0; j < number; j++, roll++) {
-          subsubtotal += rolls[roll]
-        }
-
-        subtotal += subsubtotal + modifier
+      for (let i = 0; i < number; i++, roll++) {
+        subtotal += rolls[roll]
       }
 
-      total += subtotal + mulMod
+      total += subtotal + modifier
     })
 
     return total
   }
 
+  // calculate the number of combinations of results that will succeed at reaching a target
   const calcSucc = (
     target: number,
-    count: number,
     attempts: number[],
-    roll: number,
+    die: number = 0,
     original?: number[]
   ): number => {
-    let successes = count
+    let successes = 0
+    // if this is the topmost call of the function, create the original array
+    // if this is a recursive call, pass the original array along
     const orig = original === undefined ? [...attempts] : original
     const newAttempts = [...attempts]
 
-    if (roll === 0 || newAttempts[roll] !== orig[roll]) {
-      console.log('checking success')
-      if (calcDieResults(newAttempts) === target) {
+    // cycle through all possible results with the current die
+    for (let i = newAttempts[die]; i > 0; i--) {
+      newAttempts[die] = i
+
+      // if examining the first die, or if the current die does not equal the value of its original, check for success
+      // this logic needed to prevent checking twice with each recursion
+      if ((die === 0 || newAttempts[die] !== orig[die]) && (calcDieResults(newAttempts) === target)) {
         successes++
       }
-    }
 
-    for (let i = newAttempts[roll]; i > 0; i--) {
-      console.log(newAttempts)
-      newAttempts[roll]--
-
-      if (newAttempts[roll] > 0) {
-        if (roll < orig.length - 1) {
-          return calcSucc(target, successes, newAttempts, roll + 1, orig)
-        } else {
-          return calcSucc(target, successes, newAttempts, roll, orig)
-        }
-      } else {
-        return successes
+      if (die < orig.length - 1) {
+        successes += calcSucc(target, newAttempts, die + 1, orig)
       }
     }
 
@@ -125,31 +132,31 @@ const Analysis: React.FC<Props> = ({ dice }) => {
 
   const diceProbs = (min: number, max: number): Probability[] => {
     const probabilities: Probability[] = []
-    const sidesArr = getSidesArr()
+    const poss = calcTotalPoss()
 
+    // for each possible result between the min and max, calculate how many ways that result can be rolled
     for (let i = min; i <= max; i++) {
-      console.log('start')
+      const succ = calcSucc(i, getSidesArr())
+
       probabilities.push({
         val: i,
-        prob: calcSucc(i, 0, sidesArr, 0)
+        prob: `${Math.round(succ / poss * 10000) / 100}%: ${succ} / ${poss}`
       })
     }
 
     return probabilities
   }
-  */
 
   const min = calcMinMax('min')
   const max = calcMinMax('max')
-  const avg = calcAvg()
-  //const probs = diceProbs(min, max)
 
   return (
     <section className={styles.analysis}>
       <p>Min: {min}</p>
       <p>Max: {max}</p>
-      <p>Avg: {avg}</p>
-      <p>Probabilities: to be calculated</p>
+      <p>Avg: {calcAvg()}</p>
+      <p>Probabilities: of {calcTotalPoss()} possible results</p>
+      <p>{JSON.stringify(diceProbs(min, max))}</p>
     </section>
   )
 }
