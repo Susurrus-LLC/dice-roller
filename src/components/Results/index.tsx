@@ -26,7 +26,7 @@ const Results: React.FC<Props> = ({ results }) => {
       case 20:
         return <i className='df-d20-20' />
       default:
-        return
+        return <i className={`${styles.icon} fas fa-dice-d20`} />
     }
   }
 
