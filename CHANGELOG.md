@@ -8,6 +8,7 @@ The format of this changelog is based on [Keep a Changelog](https://keepachangel
 
 ### Added 0.1.2
 
+- Add die-specific icons when showing the results.
 - Correctly calculate the probability of various results.
 
 ## [v0.1.1](<https://github.com/nai888/dice-roller/compare/v0.1.0...v0.1.1>)
