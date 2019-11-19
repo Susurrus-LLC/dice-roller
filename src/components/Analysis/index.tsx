@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { Die } from '../../App'
 
@@ -16,7 +16,7 @@ interface Probability {
 const Analysis: React.FC<Props> = ({ dice }) => {
 
   // calculate the minimum or maximum result of a set of dice and modifiers
-  const calcMinMax = (which: 'min' | 'max'): number => {
+  const calcMinMax = useCallback((which: 'min' | 'max'): number => {
     let total = 0
 
     dice.forEach(die => {
@@ -34,10 +34,10 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     })
 
     return total
-  }
+  }, [dice])
 
   // calculate the average result of a set of dice and modifiers
-  const calcAvg = (): number => {
+  const calcAvg = useCallback((): number => {
     let avg = 0
 
     dice.forEach(die => {
@@ -47,11 +47,11 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     })
 
     return avg
-  }
+  }, [dice])
 
 
   // calculate the total possible results (including identicals) of a set of dice
-  const calcTotalPoss = (): number => {
+  const calcTotalPoss = useCallback((): number => {
     let total = 1
 
     dice.forEach(die => {
@@ -61,10 +61,10 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     })
 
     return total
-  }
+  }, [dice])
 
   // given a set of dice, create an array filled with the maximum roll for each die
-  const getSidesArr = (): number[] => {
+  const getSidesArr = useCallback((): number[] => {
     const arr: number[] = []
 
     dice.forEach(die => {
@@ -78,10 +78,10 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     })
 
     return arr
-  }
+  }, [dice])
 
   // given an array of die rolls, add them together with their modifiers to get the final total
-  const calcDieResults = (rolls: number[]): number => {
+  const calcDieResults = useCallback((rolls: number[]): number => {
     let total = 0
     let roll = 0
 
@@ -97,10 +97,10 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     })
 
     return total
-  }
+  }, [dice])
 
   // calculate the number of combinations of results that will succeed at reaching a target
-  const calcSucc = (
+  const calcSucc = useCallback((
     target: number,
     attempts: number[],
     die: number = 0,
@@ -128,9 +128,13 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     }
 
     return successes
-  }
+  }, [calcDieResults])
 
-  const diceProbs = (min: number, max: number): Probability[] => {
+  const [min, setMin] = useState<number>(calcMinMax('min'))
+  const [max, setMax] = useState<number>(calcMinMax('max'))
+  const [avg, setAvg] = useState<number>(calcAvg())
+
+  const diceProbs = useCallback((): Probability[] => {
     const probabilities: Probability[] = []
     const poss = calcTotalPoss()
 
@@ -145,18 +149,24 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     }
 
     return probabilities
-  }
+  }, [min, max, calcTotalPoss, calcSucc, getSidesArr])
 
-  const min = calcMinMax('min')
-  const max = calcMinMax('max')
+  const [poss, setPoss] = useState<number>(calcTotalPoss())
+  const [probs, setProbs] = useState<Probability[]>(diceProbs())
+
+  useEffect(() => setMin(calcMinMax('min')), [calcMinMax])
+  useEffect(() => setMax(calcMinMax('max')), [calcMinMax])
+  useEffect(() => setAvg(calcAvg()), [calcAvg])
+  useEffect(() => setPoss(calcTotalPoss()), [calcTotalPoss])
+  useEffect(() => setProbs(diceProbs()), [diceProbs])
 
   return (
     <section className={styles.analysis}>
       <p>Min: {min}</p>
       <p>Max: {max}</p>
-      <p>Avg: {calcAvg()}</p>
-      <p>Probabilities: of {calcTotalPoss()} possible results</p>
-      <p>{JSON.stringify(diceProbs(min, max))}</p>
+      <p>Avg: {avg}</p>
+      <p>Probabilities: of {poss} possible results</p>
+      <p>{JSON.stringify(probs)}</p>
     </section>
   )
 }
