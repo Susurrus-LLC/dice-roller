@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Result } from '../../App'
+import { Die, Result } from '../../App'
 
 import styles from './Results.module.sass'
 
@@ -9,6 +9,27 @@ interface Props {
 }
 
 const Results: React.FC<Props> = ({ results }) => {
+  const icon = (die: Die) => {
+    switch (die.sides) {
+      case 2:
+        return <i className='df-d2-2' />
+      case 4:
+        return <i className='df-d4-4' />
+      case 6:
+        return <i className='df-d6-6' />
+      case 8:
+        return <i className='df-d8-8' />
+      case 10:
+        return <i className='df-d10-10' />
+      case 12:
+        return <i className='df-d12-12' />
+      case 20:
+        return <i className='df-d20-20' />
+      default:
+        return
+    }
+  }
+
   const resultRow = [...results].reverse().map(result => {
     const concatDice = result.dice.map((die, i) => (
       <React.Fragment key={i}>
@@ -19,7 +40,7 @@ const Results: React.FC<Props> = ({ results }) => {
           </span>
           <span className={styles.rolls}>
             <span className={styles.rollsIcon}>
-              <i className={`${styles.icon} fas fa-dice-d20`} />
+              {icon(die)}
             </span>
             <span className={styles.rollsNums}>
               {` ${die.rolls ? die.rolls.join(', ') : null}`}
