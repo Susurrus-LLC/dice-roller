@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
 
   const author = 'Ian A. Cook'
   const authorURL = 'https://github.com/nai888/'
-  const appGhURL = 'https://github.com/nai888/dice-roller/'
+  const appGhURL = 'https://github.com/Susurrus-LLC/dice-roller/'
   const version = '0.1.2'
 
   return (
