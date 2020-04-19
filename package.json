@@ -2,13 +2,13 @@
   "name": "dice-roller",
   "version": "0.1.2",
   "description": "Dice roller that displays a probabilistic analysis",
-  "homepage": "https://nai888.github.io/dice-roller/",
+  "homepage": "https://susurrus-llc.github.io/dice-roller/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nai888/dice-roller"
+    "url": "https://github.com/Susurrus-LLC/dice-roller"
   },
   "bugs": {
-    "url": "https://github.com/nai888/dice-roller/issues"
+    "url": "https://github.com/Susurrus-LLC/dice-roller/issues"
   },
   "author": "Ian A. Cook <ian@code.ianacook.com>",
   "license": "AGPL-3.0",
