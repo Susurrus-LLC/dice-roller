@@ -39,7 +39,7 @@
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.7",
     "modularscale-sass": "^3.0.10",
-    "node-sass": "^4.14.0",
+    "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-d3": "^0.4.0",
