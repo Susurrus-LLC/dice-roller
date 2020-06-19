@@ -5,20 +5,20 @@
     "main.js.map": "/dice-roller/static/js/main.358e4b5f.chunk.js.map",
     "runtime-main.js": "/dice-roller/static/js/runtime-main.0dd132b6.js",
     "runtime-main.js.map": "/dice-roller/static/js/runtime-main.0dd132b6.js.map",
-    "static/css/2.ddf8da7a.chunk.css": "/dice-roller/static/css/2.ddf8da7a.chunk.css",
+    "static/css/2.2a54777b.chunk.css": "/dice-roller/static/css/2.2a54777b.chunk.css",
     "static/js/2.df1a7a45.chunk.js": "/dice-roller/static/js/2.df1a7a45.chunk.js",
     "static/js/2.df1a7a45.chunk.js.map": "/dice-roller/static/js/2.df1a7a45.chunk.js.map",
     "index.html": "/dice-roller/index.html",
-    "precache-manifest.1bb79422c40c85ea588a8bb68779a9ca.js": "/dice-roller/precache-manifest.1bb79422c40c85ea588a8bb68779a9ca.js",
+    "precache-manifest.bfa0ec1f23194a824f34fd83dc6c2a8c.js": "/dice-roller/precache-manifest.bfa0ec1f23194a824f34fd83dc6c2a8c.js",
     "service-worker.js": "/dice-roller/service-worker.js",
-    "static/css/2.ddf8da7a.chunk.css.map": "/dice-roller/static/css/2.ddf8da7a.chunk.css.map",
+    "static/css/2.2a54777b.chunk.css.map": "/dice-roller/static/css/2.2a54777b.chunk.css.map",
     "static/css/main.e25c90dc.chunk.css.map": "/dice-roller/static/css/main.e25c90dc.chunk.css.map",
     "static/js/2.df1a7a45.chunk.js.LICENSE.txt": "/dice-roller/static/js/2.df1a7a45.chunk.js.LICENSE.txt",
-    "static/media/global.sass": "/dice-roller/static/media/fa-solid-900.ec763292.svg"
+    "static/media/global.sass": "/dice-roller/static/media/fa-solid-900.f3a7d3b5.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.0dd132b6.js",
-    "static/css/2.ddf8da7a.chunk.css",
+    "static/css/2.2a54777b.chunk.css",
     "static/js/2.df1a7a45.chunk.js",
     "static/css/main.e25c90dc.chunk.css",
     "static/js/main.358e4b5f.chunk.js"
