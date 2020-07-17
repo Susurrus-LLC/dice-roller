@@ -46,7 +46,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.6.1",
