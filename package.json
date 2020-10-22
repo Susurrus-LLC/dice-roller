@@ -44,7 +44,7 @@
     "react": "^16.14.0",
     "react-d3": "^0.4.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "3.4.4",
     "redux": "^4.0.5",
     "typescript": "4.0.3"
   },
