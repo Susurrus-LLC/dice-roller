@@ -6,20 +6,20 @@
     "runtime-main.js": "/dice-roller/static/js/runtime-main.f9aa7fc1.js",
     "runtime-main.js.map": "/dice-roller/static/js/runtime-main.f9aa7fc1.js.map",
     "static/css/2.2cb9cf3f.chunk.css": "/dice-roller/static/css/2.2cb9cf3f.chunk.css",
-    "static/js/2.ceec0bb3.chunk.js": "/dice-roller/static/js/2.ceec0bb3.chunk.js",
-    "static/js/2.ceec0bb3.chunk.js.map": "/dice-roller/static/js/2.ceec0bb3.chunk.js.map",
+    "static/js/2.5ea350b0.chunk.js": "/dice-roller/static/js/2.5ea350b0.chunk.js",
+    "static/js/2.5ea350b0.chunk.js.map": "/dice-roller/static/js/2.5ea350b0.chunk.js.map",
     "index.html": "/dice-roller/index.html",
-    "precache-manifest.e10265fb245af789df6000f46c67a907.js": "/dice-roller/precache-manifest.e10265fb245af789df6000f46c67a907.js",
+    "precache-manifest.8d015c1b9091644359a3234bd88bf4f5.js": "/dice-roller/precache-manifest.8d015c1b9091644359a3234bd88bf4f5.js",
     "service-worker.js": "/dice-roller/service-worker.js",
     "static/css/2.2cb9cf3f.chunk.css.map": "/dice-roller/static/css/2.2cb9cf3f.chunk.css.map",
     "static/css/main.e25c90dc.chunk.css.map": "/dice-roller/static/css/main.e25c90dc.chunk.css.map",
-    "static/js/2.ceec0bb3.chunk.js.LICENSE.txt": "/dice-roller/static/js/2.ceec0bb3.chunk.js.LICENSE.txt",
+    "static/js/2.5ea350b0.chunk.js.LICENSE.txt": "/dice-roller/static/js/2.5ea350b0.chunk.js.LICENSE.txt",
     "static/media/global.sass": "/dice-roller/static/media/fa-solid-900.8e1ed89b.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.f9aa7fc1.js",
     "static/css/2.2cb9cf3f.chunk.css",
-    "static/js/2.ceec0bb3.chunk.js",
+    "static/js/2.5ea350b0.chunk.js",
     "static/css/main.e25c90dc.chunk.css",
     "static/js/main.0acb5782.chunk.js"
   ]
