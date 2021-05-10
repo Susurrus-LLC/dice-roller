@@ -51,7 +51,7 @@ const Input: React.FC<Props> = ({
     />
   ))
 
-  const submit = (e: SyntheticEvent) => {
+  const submit = (e: SyntheticEvent): void => {
     e.preventDefault()
     handleSubmit()
   }

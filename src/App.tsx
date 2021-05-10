@@ -19,6 +19,11 @@ export interface Die {
   result?: number
 }
 
+export interface ResultsCalc {
+  total: number
+  rolls: number[]
+}
+
 export interface Result {
   type?: DieType
   dice: Die[]
@@ -37,9 +42,9 @@ const App: React.FC = () => {
   const [dice, setDice] = useState<Die[]>([defaultDie])
   const [results, setResults] = useState<Result[]>([])
 
-  const calcResult = (die: Die) => {
+  const calcResult = (die: Die): ResultsCalc => {
     const { number, sides, modifier } = die
-    let num = number
+    const num = number
     let total = 0
     const rolls: number[] = []
 

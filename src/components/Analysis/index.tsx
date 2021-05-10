@@ -14,7 +14,6 @@ interface Probability {
 }
 
 const Analysis: React.FC<Props> = ({ dice }) => {
-
   // calculate the minimum or maximum result of a set of dice and modifiers
   const calcMinMax = (which: 'min' | 'max'): number => {
     let total = 0
@@ -26,8 +25,8 @@ const Analysis: React.FC<Props> = ({ dice }) => {
         which === 'min'
           ? (total += sides === 'f' ? -1 : 1)
           : which === 'max'
-            ? (total += sides === 'f' ? 1 : sides)
-            : (total += 0)
+          ? (total += sides === 'f' ? 1 : sides)
+          : (total += 0)
       }
 
       total += modifier
@@ -43,12 +42,13 @@ const Analysis: React.FC<Props> = ({ dice }) => {
     dice.forEach(die => {
       const { number, sides, modifier } = die
 
-      sides === 'f' ? (avg += modifier) : (avg += (number * ((sides + 1) / 2)) + modifier)
+      sides === 'f'
+        ? (avg += modifier)
+        : (avg += number * ((sides + 1) / 2) + modifier)
     })
 
     return avg
   }
-
 
   // calculate the total possible results (including identicals) of a set of dice
   const calcTotalPoss = (): number => {
@@ -118,7 +118,10 @@ const Analysis: React.FC<Props> = ({ dice }) => {
 
       // if examining the first die, or if the current die does not equal the value of its original, check for success
       // this logic needed to prevent checking twice with each recursion
-      if ((die === 0 || newAttempts[die] !== orig[die]) && (calcDieResults(newAttempts) === target)) {
+      if (
+        (die === 0 || newAttempts[die] !== orig[die]) &&
+        calcDieResults(newAttempts) === target
+      ) {
         successes++
       }
 
@@ -140,7 +143,7 @@ const Analysis: React.FC<Props> = ({ dice }) => {
 
       probabilities.push({
         val: i,
-        prob: `${Math.round(succ / poss * 10000) / 100}%: ${succ} / ${poss}`
+        prob: `${Math.round((succ / poss) * 10000) / 100}%: ${succ} / ${poss}`
       })
     }
 

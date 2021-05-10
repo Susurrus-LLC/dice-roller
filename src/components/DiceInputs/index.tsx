@@ -26,7 +26,7 @@ const DiceInputs: React.FC<Props> = ({
   handleAddRemove,
   numDice
 }) => {
-  const addButton = () => (
+  const addButton = (): JSX.Element => (
     <button
       type='button'
       className={styles.add}
@@ -40,7 +40,7 @@ const DiceInputs: React.FC<Props> = ({
     </button>
   )
 
-  const remButton = () => (
+  const remButton = (): JSX.Element => (
     <button
       type='button'
       className={styles.remove}
@@ -81,8 +81,12 @@ const DiceInputs: React.FC<Props> = ({
         <option value={6}>6</option>
         <option value={4}>4</option>
         <option value={2}>2</option>
-        <option value='f' disabled>fudge</option>
-        <option value='other' disabled>other</option>
+        <option value='f' disabled>
+          fudge
+        </option>
+        <option value='other' disabled>
+          other
+        </option>
       </select>{' '}
       +{' '}
       <input
