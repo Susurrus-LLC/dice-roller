@@ -20,7 +20,7 @@ const Input: React.FC<Props> = ({
   handleAddRemove
 }) => {
   const handleNumbers = (num: number, min?: number): number =>
-    min ? (num < min ? min : Math.round(num)) : Math.round(num)
+    min !== undefined ? (num < min ? min : Math.round(num)) : Math.round(num)
 
   const handleDieChange = (
     die: Die,

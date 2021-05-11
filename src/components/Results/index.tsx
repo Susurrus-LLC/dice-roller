@@ -24,7 +24,7 @@ const Results: React.FC<Props> = ({ results }) => {
               <i className={`${styles.icon} fas fa-dice-d20`} />
             </span>
             <span className={styles.rollsNums}>
-              {` ${die.rolls ? die.rolls.join(', ') : null}`}
+              {` ${die.rolls !== undefined ? die.rolls.join(', ') : ''}`}
             </span>
           </span>
         </li>
