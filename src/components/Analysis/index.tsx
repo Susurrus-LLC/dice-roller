@@ -22,11 +22,13 @@ const Analysis: React.FC<Props> = ({ dice }) => {
       const { number, sides, modifier } = die
 
       for (let i = number; i > 0; i--) {
-        which === 'min'
-          ? (total += sides === 'f' ? -1 : 1)
-          : which === 'max'
-          ? (total += sides === 'f' ? 1 : sides)
-          : (total += 0)
+        if (which === 'min') {
+          total += sides === 'f' ? -1 : 1
+        } else if (which === 'max') {
+          total += sides === 'f' ? 1 : sides
+        } else {
+          total += 0
+        }
       }
 
       total += modifier
